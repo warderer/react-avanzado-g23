@@ -28,7 +28,8 @@ function SongProvider (props) {
     loading,
     selectedSong,
     setSelectedSong,
-    setSearch
+    setSearch,
+    search
   }
 
   return (
