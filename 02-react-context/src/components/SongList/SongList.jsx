@@ -7,7 +7,7 @@ const SongList = () => {
     <section>
       {loading
         ? <h1>Cargando...</h1>
-        : list.filter((song) => {
+        : list.filter((song) => { // Colocamos las condiciones del arreglo que vamos a desplegar de las canciones
           if (search === '') {
             return song
           } else if (song.title.toLowerCase().includes(search.toLowerCase())) {
@@ -15,7 +15,7 @@ const SongList = () => {
           }
           return null
         }
-        ).map((song) => (
+        ).map((song) => ( // Desplegamos las canciones que cumplan con los parámetros del filtro
           <div
             className='row-song'
             key={song.id}
