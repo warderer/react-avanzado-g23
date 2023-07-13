@@ -1,13 +1,16 @@
 // import SongList from '../../components/SongList/SongList'
 import SongList from '@/components/SongList'
 import SongDetail from '@/components/SongDetail'
-import './home.css'
+import Header from '@/components/Header'
 import { SongProvider } from '@/context/SongContext'
+import './home.css'
 
 const Home = () => {
   return (
-    <div className='home-container'>
-      <SongProvider>
+
+    <SongProvider>
+      <Header />
+      <div className='home-container'>
         <div className='izquierdo'>
           <h2>Lado Izquierdo</h2>
           <SongList />
@@ -16,8 +19,9 @@ const Home = () => {
           <h2>Lado Derecho</h2>
           <SongDetail />
         </div>
-      </SongProvider>
-    </div>
+      </div>
+    </SongProvider>
+
   )
 }
 export default Home
