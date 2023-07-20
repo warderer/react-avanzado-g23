@@ -1,8 +1,13 @@
 import useForm from '@/hooks/useForm'
+import { useNavigate } from 'react-router-dom'
+import { registerUserService } from '@/services/userServices'
 import '@/styles/form.css'
 import logo from '@/assets/react.svg'
 
 const Signup = () => {
+  // usamos el hook useNavigate para redireccionar al usuario
+  const navigate = useNavigate()
+
   // Paso 1: crear un objeto con valores iniciales:
   const datos = {
     first_name: '',
@@ -13,8 +18,16 @@ const Signup = () => {
   }
 
   // Paso 2: Creo la función que se ejecutara al enviar el formulario
-  const sendData = (data) => {
-    console.log('Send Data', data)
+  const sendData = async (data) => {
+    try {
+      const response = await registerUserService(data)
+      if (response.status === 201) {
+        console.log('Usuario creado exitosamente')
+        navigate('/login')
+      }
+    } catch (error) {
+      console.error('Ocurrio un error en Signup', error.message)
+    }
   }
 
   // Paso 3: Hacer uso de mi custom hook
