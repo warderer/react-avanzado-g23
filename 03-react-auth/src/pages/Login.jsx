@@ -1,10 +1,13 @@
 import useForm from '@/hooks/useForm'
+import { useAuthContext } from '@/hooks/useAuthContext'
 import { useNavigate } from 'react-router-dom'
 import { loginUserService } from '@/services/userServices'
 import '@/styles/form.css'
 import logo from '@/assets/react.svg'
 
 const Login = () => {
+  const { login } = useAuthContext()
+
   const navigate = useNavigate()
 
   // Paso 1: crear un objeto con valores iniciales:
@@ -20,7 +23,8 @@ const Login = () => {
       if (response.status === 200) {
         // Guardamos el token en el localStorage del navegador
         // Este dato permanece aún si el navegador se cierra y se vuelve a abrir.
-        localStorage.setItem('token', response.data.token)
+        // localStorage.setItem('token', response.data.token)
+        login(response.data.token)
         navigate('/dashboard')
       }
     } catch (error) {
