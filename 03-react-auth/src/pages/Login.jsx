@@ -1,10 +1,25 @@
+import useForm from '@/hooks/useForm'
 import '@/styles/form.css'
 import logo from '@/assets/react.svg'
 
 const Login = () => {
+  // Paso 1: crear un objeto con valores iniciales:
+  const datos = {
+    email: '',
+    password: ''
+  }
+
+  // Paso 2: Creo la función que se ejecutara al enviar el formulario
+  const sendData = async (data) => {
+    console.log(data)
+  }
+
+  // Paso 3: Hacer uso de mi custom hook
+  const { input, handleInputChange, handleSubmit } = useForm(sendData, datos)
+
   return (
     <main className='form-signin w-100 m-auto'>
-      <form>
+      <form onSubmit={handleSubmit}>
         <img
           className='mb-4'
           src={logo}
@@ -20,8 +35,9 @@ const Login = () => {
             className='form-control'
             id='floatingInput'
             placeholder='name@example.com'
-            value=''
-            onChange={() => {}}
+            name='email'
+            value={input.email}
+            onChange={handleInputChange}
           />
           <label htmlFor='floatingInput'>Email address</label>
         </div>
@@ -32,8 +48,9 @@ const Login = () => {
             className='form-control'
             id='floatingPassword'
             placeholder='Password'
-            value=''
-            onChange={() => {}}
+            name='password'
+            value={input.password}
+            onChange={handleInputChange}
           />
           <label htmlFor='floatingPassword'>Password</label>
         </div>
