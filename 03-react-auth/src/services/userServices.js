@@ -21,5 +21,11 @@ axios.interceptors.request.use(
 const registerUserService = (data) => axios.post(`${BASE_URL}/register`, data)
 const loginUserService = (data) => axios.post(`${BASE_URL}/login`, data)
 const getSingleUserService = (id) => axios.get(`${BASE_URL}/users/${id}`)
+const getMeUserService = () => axios.get(`${BASE_URL}/me`)
 
-export { registerUserService, loginUserService, getSingleUserService }
+export {
+  registerUserService,
+  loginUserService,
+  getSingleUserService,
+  getMeUserService
+}

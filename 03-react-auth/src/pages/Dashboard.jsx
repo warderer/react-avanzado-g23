@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useAuthContext } from '@/hooks/useAuthContext'
-import { getSingleUserService } from '@/services/userServices'
+import { getMeUserService } from '@/services/userServices'
 
 const Dashboard = () => {
   const { userPayload } = useAuthContext()
@@ -9,7 +9,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await getSingleUserService(userPayload.id)
+        const response = await getMeUserService(userPayload.id)
         if (response.status === 200) {
           setUserData(response.data)
         }
